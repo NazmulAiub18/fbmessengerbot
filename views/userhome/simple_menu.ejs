@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add New Simple Menu</title>
+	<script type="text/javascript" src="/script/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="/script/jquery-ui.js"></script>
+</head>
+<body>
+<center>
+<h1>Add Simple Menu</h1>
+<img src="https://scontent.fdac20-1.fna.fbcdn.net/v/t39.2365-6/23204276_131607050888932_1057585862134464512_n.png?_nc_cat=106&_nc_oc=AQku-SZcmUZKFfrso1e81d-f38GFQZne5CBL86qEo7XaD5w65ELYoqpIibAZJYp0lkk&_nc_ht=scontent.fdac20-1.fna&oh=cc875794d41223c93f15531ff928ca0e&oe=5D1C1D0A" />
+	<br><font color="green"><b><%=msg%></b></font>
+	<form method="POST">
+		<table id="dynamic_field">
+			<tr>
+				<td>
+					<b>User Text</b>
+				</td>
+				<td>:</td>
+				<td>
+					<input type="text" name="user_text[]" value="" />
+				</td>
+				<td>
+					<button type="button" id="add">Add More</button>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<b>Menu Name</b>
+				</td>
+				<td>:</td>
+				<td>
+					<input type="text" name="menu_name" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Menu Title</b>
+				</td>
+				<td>:</td>
+				<td>
+					<input type="text" name="menu_title" value="" />
+				</td>
+			</tr>
+		</table>
+		<table id="dynamic_field2">
+			<tr>
+				<td>
+					<b>Button Title</b>
+				</td>
+				<td>:</td>
+				<td>
+					<input type="text" name="btn_title[]" value="" />
+				</td>
+				<td>
+					<button type="button" id="add2">Add More</button>
+				</td>
+			</tr>
+		</table>
+		<div id="maxbtnerr"></div>
+		<input type="hidden" name="page_id" value="547929305615990" />
+		<input type="submit" name="submit" value="Submit" />
+	</form>
+</center>
+</body>
+</html>
+
+<script>
+
+$(document).ready(function(){  
+      var i=1;  
+      $('#add').click(function(){  
+           i++;  
+           $('#dynamic_field').append(
+           	'<tr id="row'+i+'"><td></td><td></td><td><input type="text" name="user_text[]" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" >X</button></td></tr>'
+           	);  
+      });  
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      });
+
+      var j=1;
+      var c=1;
+      $('#add2').click(function(){    
+           if(c<3){
+           	j++;
+           	c++;
+           	$('#dynamic_field2').append(
+           	'<tr id="rowb'+j+'"><td></td><td></td><td><input type="text" name="btn_title[]" /></td><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_remove2" >X</button></td></tr>'
+           	);
+           }
+           else
+           {
+           	$('#maxbtnerr').html('<font color="red"><b>Maximum of 3 Buttons Allowed in Simple Menu!</b></font>');
+           }
+      });  
+      $(document).on('click', '.btn_remove2', function(){
+      		c--;
+           var button_id = $(this).attr("id");   
+           $('#rowb'+button_id+'').remove();
+           $('#maxbtnerr').html('');  
+      });
+});
+
+
+</script>

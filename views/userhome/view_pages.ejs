@@ -1,0 +1,18 @@
+
+<table>
+	<tr>
+		<td>Name</td><td>ID</td><td>Category</td><td>Tasks</td>
+	</tr>
+	<% for(var i=0; i < data.length; i++){ %>
+	<tr>
+		<td><%= data[i].name %></td>
+		<td><%= data[i].id %></td>
+		<td><%= data[i].category %></td>
+		<td>
+		<% for(var j=0; j < data[i].tasks.length; j++){ %>
+			<%= data[i].tasks[j] %>,
+			<% } %>
+		</td>
+	</tr>
+	<% } %>
+</table>
